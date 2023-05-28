@@ -1,9 +1,9 @@
-const qrcodeReader = () => {
+const QrcodeReader = () => {
     return (
-        <div>
-            <div>qrcodeReader</div>
+        <div className="mt-5">
+            <div className="m-auto text-center text-xl">QrcodeReader</div>
         </div>
     );
 };
 
-export default qrcodeReader;
+export default QrcodeReader;

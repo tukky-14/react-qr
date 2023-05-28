@@ -1,9 +1,9 @@
-const nodeQuirc = () => {
+const NodeQuirc = () => {
     return (
-        <div>
-            <div>nodeQuirc</div>
+        <div className="mt-5">
+            <div className="m-auto text-center text-xl">NodeQuirc</div>
         </div>
     );
 };
 
-export default nodeQuirc;
+export default NodeQuirc;
