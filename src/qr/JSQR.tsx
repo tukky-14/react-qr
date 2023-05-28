@@ -37,7 +37,7 @@ const JSQR = () => {
         <div className="mt-5">
             <div className="m-auto text-center text-xl">jsQR</div>
             <div className="px-2">
-                <video ref={videoRef} />
+                <video className="m-auto" ref={videoRef} />
                 <canvas ref={canvasRef} style={{ display: 'none' }} />
             </div>
             <div className="px-2 text-center">
