@@ -10,6 +10,11 @@ function App() {
                     jsQR
                 </Button>
             </Link>
+            <Link to="/qrcode-reader">
+                <Button fullWidth sx={{ textTransform: 'none' }} variant="contained">
+                    qrcode-reader
+                </Button>
+            </Link>
         </div>
     );
 }
