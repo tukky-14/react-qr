@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
 import Webcam from 'react-webcam';
 
-const QrcodeReader = () => {
+const Zxing = () => {
     const videoConstraints = {
         width: 720,
         height: 720,
@@ -12,16 +12,17 @@ const QrcodeReader = () => {
     const webcamRef = useRef<any>(null);
 
     useEffect(() => {
-        // const interval = setInterval(() => {
-        //     const imageData = webcamRef.current?.getScreenshot() || '';
-        //     const imageSrc = imageData.split(',')[1];
-        //     setImageSrc(imageSrc);
-        // }, 500);
+        const interval = setInterval(() => {
+            const imageSrc = webcamRef.current.getScreenshot();
+            console.log('imageSrc:', imageSrc);
+            setImageSrc(imageSrc);
+        }, 1000);
+        return () => clearInterval(interval);
     }, []);
 
     return (
         <div className="mt-5">
-            <div className="m-auto text-center text-xl">qrcode-reader</div>
+            <div className="m-auto text-center text-xl">zxing</div>
             <div className="px-2">
                 <Webcam
                     className="m-auto"
@@ -43,4 +44,4 @@ const QrcodeReader = () => {
     );
 };
 
-export default QrcodeReader;
+export default Zxing;

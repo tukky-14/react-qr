@@ -10,9 +10,9 @@ function App() {
                     jsQR
                 </Button>
             </Link>
-            <Link to="/qrcode-reader">
+            <Link to="/zxing">
                 <Button fullWidth sx={{ textTransform: 'none' }} variant="contained">
-                    qrcode-reader
+                    zxing
                 </Button>
             </Link>
         </div>

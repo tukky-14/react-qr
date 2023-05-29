@@ -8,7 +8,7 @@
 
     react-qr-reader は React 用に特化した QR コードリーダーコンポーネントで、簡単に実装可能。
     内部的には jsQR を使用しており、ウェブカメラを介してリアルタイムで QR コードをスキャンする機能がある。
-    React18 以降には正式に対応していない。（20230528 現在）
+    React18 以降には正式に対応していない。（2023/05/28 現在）
 
 <br>
 
@@ -23,20 +23,14 @@
 
 <br>
 
--   [qrcode-reader](https://www.npmjs.com/package/qrcode-reader)
-
+-   [zxing/browser](https://www.npmjs.com/package/@zxing/browser)
+-   [zxing/library](https://www.npmjs.com/package/@zxing/library)
     ```
-    npm i qrcode-reader
+    npm i @zxing/browser
+    npm i @zxing/library --save`
     ```
-
-    Node.js で QR コード 読取するための一般的なライブラリ。
-    jsQR と比較すると少々複雑だが、高精度な読み取りが可能。
-
-<br>
-
--   [node-quirc](https://www.npmjs.com/package/node-quirc)
-    ```
-    npm i node-quirc
-    ```
-    node-quirc は C++ベースのライブラリで、Node.js のネイティブアドオンとして提供されている。
-    他のライブラリと比較して高速で、高精度な読み取りが可能。
+    「@zxing/browser」と「zxing/library」は、ZXing（ゼブラ・クロッシング）と呼ばれるオープンソースのバーコード処理ライブラリの一部。
+    -   @zxing/browser
+        ZXing ライブラリをブラウザ環境で使用するための特定の実装。ZXing は Java で書かれており、通常はネイティブな Java アプリケーションで使用されるが、@zxing/browser は JavaScript で書かれており、ブラウザ上で ZXing の機能を利用するためのインタフェースを提供する。
+    -   zxing/library:
+        「zxing/library」は、ZXing のコアライブラリであり、バーコードのエンコードやデコードなどの基本的な機能を提供する。このライブラリは Java で書かれており、Java アプリケーションで使用することが可能。
