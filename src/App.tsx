@@ -11,8 +11,9 @@ function App() {
             <Header />
             <Routes>
                 <Route index element={<Home />} />
-                <Route path="jsQR" element={<JSQR />} />
-                <Route path="zxing" element={<Zxing />} />
+                <Route path="/qr-react" element={<Home />} />
+                <Route path="/qr-react/jsQR" element={<JSQR />} />
+                <Route path="/qr-react/zxing" element={<Zxing />} />
             </Routes>
         </BrowserRouter>
     );
