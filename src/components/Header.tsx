@@ -10,7 +10,7 @@ export default function Header() {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        <Link to="/qr-react">QR Test</Link>
+                        <Link to="/react-qr">QR Test</Link>
                     </Typography>
                 </Toolbar>
             </AppBar>
