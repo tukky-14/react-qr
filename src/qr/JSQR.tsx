@@ -7,12 +7,20 @@ const JSQR = () => {
     const canvasRef = useRef<any>();
 
     useEffect(() => {
-        navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-            videoRef.current.srcObject = stream;
-            videoRef.current.play().catch((error: any) => console.log());
-            const intervalId = setInterval(scanQR, 500); // Every second
-            return () => clearInterval(intervalId); // Clear interval on unmount
-        });
+        navigator.mediaDevices
+            .getUserMedia({
+                video: {
+                    facingMode: 'environment',
+                    width: { ideal: 480 },
+                    height: { ideal: 600 },
+                },
+            })
+            .then((stream) => {
+                videoRef.current.srcObject = stream;
+                videoRef.current.play().catch((error: any) => console.log());
+                const intervalId = setInterval(scanQR, 500); // Every second
+                return () => clearInterval(intervalId); // Clear interval on unmount
+            });
     }, []);
 
     const scanQR = () => {
