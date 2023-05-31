@@ -18,8 +18,11 @@ const JSQR = () => {
             .then((stream) => {
                 videoRef.current.srcObject = stream;
                 videoRef.current.play().catch((error: any) => console.log());
-                const intervalId = setInterval(scanQR, 500); // Every second
-                return () => clearInterval(intervalId); // Clear interval on unmount
+                const intervalId = setInterval(scanQR, 500);
+                return () => clearInterval(intervalId);
+            })
+            .catch((error) => {
+                alert(error);
             });
     }, []);
 
@@ -43,9 +46,9 @@ const JSQR = () => {
 
     return (
         <div className="mt-5">
-            <div className="m-auto text-center text-xl">jsQR</div>
+            <div className="m-auto mb-2 text-center text-xl font-bold">jsQR</div>
             <div className="px-2">
-                <video className="m-auto" ref={videoRef} />
+                <video className="m-auto" ref={videoRef} playsInline />
                 <canvas ref={canvasRef} style={{ display: 'none' }} />
             </div>
             <div className="px-2 text-center">

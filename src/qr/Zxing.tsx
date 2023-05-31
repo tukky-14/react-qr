@@ -8,23 +8,19 @@ const Zxing = () => {
 
     useEffect(() => {
         navigator.mediaDevices
-            .enumerateDevices()
-            .then((devices) => {
-                const videoInputDevices = devices.filter((device) => device.kind === 'videoinput');
-                const rearCamera = videoInputDevices.find((device) =>
-                    device.label.includes('rear')
-                );
-                const sourceId = rearCamera ? rearCamera.deviceId : videoInputDevices[0].deviceId;
-                codeReader.decodeFromVideoDevice(sourceId, videoRef.current, (result, err) => {
+            .getUserMedia({ video: { width: 480, height: 600 } })
+            .then((stream) => {
+                if (videoRef.current) {
+                    videoRef.current.srcObject = stream;
+                }
+                codeReader.decodeFromVideoDevice(null, videoRef.current, (result, err) => {
                     if (result) {
                         console.log(result);
                         setResultText(result.getText());
-                        // setResultText(result.text);
                     }
-                    if (err) {
-                        // console.error(err);
-                        // alert('error');
-                    }
+                    // if (err) {
+                    // alert('error');
+                    // }
                 });
             })
             .catch((err) => console.error(err));
@@ -37,13 +33,9 @@ const Zxing = () => {
 
     return (
         <div className="mt-5">
-            <div className="m-auto text-center text-xl">zxing</div>
+            <div className="m-auto mb-2 text-center text-xl font-bold">zxing</div>
             <div className="px-2">
-                <video
-                    className="m-auto"
-                    ref={videoRef}
-                    style={{ width: '480px', height: '600px' }}
-                />
+                <video className="m-auto" ref={videoRef} />
             </div>
             <div className="px-2 text-center">
                 <div>【読取結果】</div>
