@@ -15,7 +15,7 @@ const Zxing = () => {
                 }
                 codeReader.decodeFromVideoDevice(null, videoRef.current, (result, err) => {
                     if (result) {
-                        console.log(result);
+                        alert(result.getText());
                         setResultText(result.getText());
                     }
                     // if (err) {

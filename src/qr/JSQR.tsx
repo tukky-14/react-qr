@@ -40,6 +40,7 @@ const JSQR = () => {
         const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
         const qrCode = jsQR(imageData.data, imageData.width, imageData.height);
         if (qrCode) {
+            alert(qrCode.data);
             setScanResult(qrCode.data);
         }
     };
