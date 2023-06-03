@@ -3,6 +3,7 @@ import { useRef, useEffect, useState } from 'react';
 
 const JSQR = () => {
     const [scanResult, setScanResult] = useState('');
+    const [cameraFacingMode, setCameraFacingMode] = useState('environment');
     const videoRef = useRef<any>();
     const canvasRef = useRef<any>();
 
@@ -10,7 +11,7 @@ const JSQR = () => {
         navigator.mediaDevices
             .getUserMedia({
                 video: {
-                    facingMode: 'environment',
+                    facingMode: cameraFacingMode,
                     width: { ideal: 480 },
                     height: { ideal: 600 },
                 },
@@ -24,7 +25,7 @@ const JSQR = () => {
             .catch((error) => {
                 alert(error);
             });
-    }, []);
+    }, [cameraFacingMode]);
 
     const scanQR = () => {
         const video: any = videoRef.current;
@@ -45,6 +46,10 @@ const JSQR = () => {
         }
     };
 
+    const switchCameraFacingMode = () => {
+        setCameraFacingMode((prevMode) => (prevMode === 'environment' ? 'user' : 'environment'));
+    };
+
     return (
         <div className="mt-5">
             <div className="m-auto mb-2 text-center text-xl font-bold">jsQR</div>
@@ -58,6 +63,12 @@ const JSQR = () => {
                     {scanResult}
                 </div>
             </div>
+            <button
+                className="block m-auto mt-2 px-2 py-1 border rounded text-white bg-blue-600 hover:opacity-80"
+                onClick={switchCameraFacingMode}
+            >
+                カメラ切替
+            </button>
         </div>
     );
 };

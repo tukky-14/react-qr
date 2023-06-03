@@ -4,32 +4,51 @@ import { useRef, useEffect, useState } from 'react';
 const Zxing = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [resultText, setResultText] = useState('');
-    const codeReader = new BrowserMultiFormatReader();
+    const [codeReader, setCodeReader] = useState<BrowserMultiFormatReader | null>(null);
+    const [cameraFacingMode, setCameraFacingMode] = useState('environment');
 
     useEffect(() => {
+        if (!codeReader) {
+            setCodeReader(new BrowserMultiFormatReader());
+        }
+
         navigator.mediaDevices
-            .getUserMedia({ video: { width: 480, height: 600 } })
+            .getUserMedia({
+                video: {
+                    width: 480,
+                    height: 600,
+                    facingMode: cameraFacingMode,
+                },
+            })
             .then((stream) => {
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream;
                 }
-                codeReader.decodeFromVideoDevice(null, videoRef.current, (result, err) => {
-                    if (result) {
-                        alert(result.getText());
-                        setResultText(result.getText());
-                    }
-                    // if (err) {
-                    // alert('error');
-                    // }
-                });
+                if (codeReader) {
+                    codeReader.decodeFromVideoDevice(null, videoRef.current, (result, err) => {
+                        if (result) {
+                            alert(result.getText());
+                            setResultText(result.getText());
+                        }
+                        // if (err) {
+                        //     alert('error');
+                        // }
+                    });
+                }
             })
             .catch((err) => console.error(err));
 
         // cleanup function
         return () => {
-            codeReader.reset();
+            if (codeReader) {
+                codeReader.reset();
+            }
         };
-    }, []);
+    }, [cameraFacingMode, codeReader]);
+
+    const switchCameraFacingMode = () => {
+        setCameraFacingMode((prevMode) => (prevMode === 'environment' ? 'user' : 'environment'));
+    };
 
     return (
         <div className="mt-5">
@@ -43,6 +62,12 @@ const Zxing = () => {
                     {resultText}
                 </div>
             </div>
+            <button
+                className="block m-auto mt-2 px-2 py-1 border rounded text-white bg-blue-600 hover:opacity-80"
+                onClick={switchCameraFacingMode}
+            >
+                カメラ切替
+            </button>
         </div>
     );
 };
