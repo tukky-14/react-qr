@@ -19,7 +19,7 @@ const JSQR = () => {
             .then((stream) => {
                 videoRef.current.srcObject = stream;
                 videoRef.current.play().catch((error: any) => console.log());
-                const intervalId = setInterval(scanQR, 500);
+                const intervalId = setInterval(scanQR, 1000);
                 return () => clearInterval(intervalId);
             })
             .catch((error) => {
