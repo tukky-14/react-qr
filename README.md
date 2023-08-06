@@ -43,7 +43,7 @@
 
 -   MediaDevices: getUserMedia()メソッドの引数 constraints を使用して解像度の設定を変更する
     -   [MediaDevices: getUserMedia() メソッド](https://developer.mozilla.org/ja/docs/Web/API/MediaDevices/getUserMedia)
--   jsQR ライブラリの場合、キャンバスに描画する色を調整する
+-   jsQR ライブラリの場合、canvas に描画する色を調整する
 
     -   [Canvas チュートリアル](https://developer.mozilla.org/ja/docs/Web/API/Canvas_API/Tutorial)
     -   [[HTML5] Canvas の表示内容にフィルターをかける（グレースケース、ネガポジ反転）](https://www.yoheim.net/blog.php?q=20120907)
